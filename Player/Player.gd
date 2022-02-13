@@ -7,6 +7,12 @@ var speed = 5.0
 var max_speed = 400.0
 var health = 1
 
+var shields = 3
+var shield_regen = 0.1
+var shield_max = 3
+var shield_texture = preload("res://Assets/shield2.png")
+
+
 var Effects = null
 onready var Explosion = load("res://Effects/Explosion.tscn")
 
@@ -24,9 +30,16 @@ func _physics_process(_delta):
 	velocity = move_and_slide(velocity, Vector2.ZERO)
 	position.x = wrapf(position.x, 0, Global.VP.x)
 	position.y = wrapf(position.y, 0, Global.VP.y)
+	
+	shields = clamp(shields + shield_regen,-100,shield_max)
+	if shields >= 1:
+		$Shield.show()
+		$Shield/Sprite.texture = shield_texture
+	if shields <= 0.9:
+		$Shield.hide()
 
 	if Input.is_action_just_pressed("shoot"):
-		var Effects = get_node_or_null("/root/Game/Effects")
+		Effects = get_node_or_null("/root/Game/Effects")
 		if Effects != null:
 			var bullet = Bullet.instance()
 			bullet.global_position = global_position + nose.rotated(rotation)
@@ -63,4 +76,18 @@ func damage(d):
 
 func _on_Area2D_body_entered(body):
 	if body.name != "Player":
-		damage(100)
+		if body.has_method("damage"):
+			body.damage(1)
+		damage(1)
+
+func _on_Shield_area_entered(area):
+	if "damage" in area and not area.is_in_group("friendly") and shields >= 0:
+		shields -= area.damage
+		area.queue_free()
+
+
+func _on_Shield_body_entered(body):
+	if body != self and not body.is_in.group("friendly") and body.has_method("damage"):
+		shields -= 1
+		body.damage(1)
+		
