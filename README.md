@@ -1,6 +1,4 @@
-# Exercise-02d-Menu-and-HUD
-
-Exercise for MSCH-C220
+# Exercise-02-Space_Shooter
 
 A basic space-shooter arcade game, created in Godot.
 
@@ -13,10 +11,13 @@ Assets are provided by [Kenney.nl](https://kenney.nl/assets/space-shooter-extens
 The explosion spritesheet was released into the public domain by [StumpyStrust](https://opengameart.org/content/explosion-sheet)
 
 ## References
-None
+
+https://www.youtube.com/playlist?list=PL3V-_hJz2cV9Vla_3b5cYoWs1x480mMeh (Links to an external site.)
 
 ## Future Development
-Advanced features?
+Advanced features:
+Sheilds
+Advanced Weapons
 
 ## Created by
 Liam Walsh
