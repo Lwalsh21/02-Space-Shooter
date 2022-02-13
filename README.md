@@ -16,7 +16,7 @@ https://www.youtube.com/playlist?list=PL3V-_hJz2cV9Vla_3b5cYoWs1x480mMeh (Links 
 
 ## Future Development
 Advanced features:
-Sheilds
+Sheilds,
 Advanced Weapons
 
 ## Created by
